@@ -1,0 +1,5 @@
+---
+# vars file for reverse-proxy
+
+server_name: test.cm.com
+ip_port: http://100.98.52.32:80

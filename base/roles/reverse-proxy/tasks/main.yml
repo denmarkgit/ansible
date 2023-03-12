@@ -1,0 +1,15 @@
+---
+# tasks file for reverse-proxy
+
+- name: install nginx
+  apt:
+    name: nginx
+    state: latest
+
+- name: install vhost config file
+  template:
+    src: vhost.conf.j2
+    dest: /etc/nginx/sites-available/{{ server_name }}.conf
+    owner: root
+    group: root
+    mode: 0644
