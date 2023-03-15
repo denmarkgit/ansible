@@ -1,0 +1,36 @@
+---
+- hosts: all
+  tags: always
+  become: true
+  pre_tasks:
+
+  - name: update repo
+    apt:
+      update_cache: yes
+    when: ansible_distribution == "Debian"
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: create denmark-ansible user
+    tags: always
+    user:
+      name: denmarkansible
+      groups: root
+
+  - name: add ssh key for denmark-ansible
+    tags: always
+    authorized_key:
+      user: denmarkansible
+      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGpPcyW9/zk7Da9tTgi2DAfQn3ek3JModWfW/JeS9+Jl denmark@odoo-new"
+
+  - name: add sudoers file for denmarkansible
+    tags: always
+    copy:
+      src: sudoers_denmarkansible
+      dest: /etc/sudoers.d/denmarkansible
+      owner: root
+      group: root
+      mode: 0440
+

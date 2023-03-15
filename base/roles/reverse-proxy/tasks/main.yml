@@ -2,9 +2,10 @@
 # tasks file for reverse-proxy
 
 - name: install nginx
-  apt:
-    name: nginx
+  package:
+    name: "{{ nginx_package }}"
     state: latest
+    update_cache: yes
 
 - name: install vhost config file
   template:

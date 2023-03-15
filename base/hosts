@@ -1,2 +1,2 @@
 [nginx]
-172.16.10.16
+172.16.10.16 nginx_package=nginx

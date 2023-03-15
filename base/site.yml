@@ -1,4 +1,16 @@
 ---
+
+- name: update repo
+  hosts: all
+  become: true
+  pre_tasks:
+
+  - name: update all
+    apt:
+     update_cache: yes
+    when: ansible_distribution == "Debian"
+   
+
 - name: create ngnix reverse proxy
   hosts: nginx
   become: true
