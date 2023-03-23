@@ -3,3 +3,4 @@
 
 server_name: test.cm.com
 ip_port: http://100.98.52.32:80
+apache_service: nginx

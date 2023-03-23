@@ -1,6 +1,6 @@
 ---
 # handlers file for reverse-proxy
-- name: restart nginx
+- name: restart_nginx
   service:
-    name: nginx
+    name: "{{ apache_service }}"
     state: restarted

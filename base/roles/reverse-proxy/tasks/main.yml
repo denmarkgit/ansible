@@ -7,10 +7,19 @@
     state: latest
     update_cache: yes
 
+- name: start and enable apache service
+  tags: apache
+  service:
+    name: "{{ apache_service }}"
+    state: started
+    enabled: yes
+
+
 - name: install vhost config file
   template:
     src: vhost.conf.j2
-    dest: /etc/nginx/sites-available/{{ server_name }}.conf
+    dest: /etc/nginx/sites-available/{{ server_name }}.conf.ORIG
     owner: root
     group: root
     mode: 0644
+  notify: restart_nginx
